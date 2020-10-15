@@ -7,99 +7,129 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
+  TextEditingController userNameTextEditingController =
+      new TextEditingController();
+  TextEditingController emailTextEditingController =
+      new TextEditingController();
+  TextEditingController passwordTextEditingController =
+      new TextEditingController();
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarMain(context),
       body: SingleChildScrollView(
         child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 24),
-        child:Column(
+          padding: EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
             children: [
-              Image.asset("assets/images/logo3.png",
-              height: 70,),
-              Image.asset("assets/images/logo2.png",
-              height: 50,),
-              SizedBox(height: 25,),
+              Image.asset(
+                "assets/images/logo3.png",
+                height: 70,
+              ),
+              Image.asset(
+                "assets/images/logo2.png",
+                height: 50,
+              ),
+              SizedBox(
+                height: 25,
+              ),
               TextField(
+                controller: userNameTextEditingController,
                 style: inputText(),
                 decoration: textfieldInputDecoration("username"),
               ),
               TextField(
+                controller: emailTextEditingController,
                 style: inputText(),
                 decoration: textfieldInputDecoration("email"),
               ),
               TextField(
+                controller: passwordTextEditingController,
                 style: inputText(),
                 decoration: textfieldInputDecoration("password"),
               ),
-              SizedBox(height: 8,),
+              SizedBox(
+                height: 8,
+              ),
               Container(
                 alignment: Alignment.centerRight,
                 child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16,vertical: 8),
-                child: Text("Forget Password?",style:inputText(),)
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: Text(
+                      "Forget Password?",
+                      style: inputText(),
+                    )),
               ),
+              SizedBox(
+                height: 25,
               ),
-              SizedBox(height: 25,),
               Container(
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.symmetric(vertical: 16),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      const Color(0xff6A87FD),
-                      const Color(0xff3E5EDE),
-                    ]
-                  ),
+                  gradient: LinearGradient(colors: [
+                    const Color(0xff6A87FD),
+                    const Color(0xff3E5EDE),
+                  ]),
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: Text("Sign up",
-                style:TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                ),
+                child: Text(
+                  "Sign up",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                  ),
                 ),
               ),
-              SizedBox(height: 25,),
+              SizedBox(
+                height: 25,
+              ),
               Container(
                 alignment: Alignment.center,
                 width: MediaQuery.of(context).size.width,
                 padding: EdgeInsets.symmetric(vertical: 16),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      const Color(0xff6A87FD),
-                      const Color(0xff3E5EDE),
-                    ]
-                  ),
+                  gradient: LinearGradient(colors: [
+                    const Color(0xff6A87FD),
+                    const Color(0xff3E5EDE),
+                  ]),
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: Text("Sign up with Google",
-                style:TextStyle(
-                  color: Colors.white,
-                  fontSize: 25,
-                ),
+                child: Text(
+                  "Sign up with Google",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                  ),
                 ),
               ),
-              SizedBox(height: 25,),
+              SizedBox(
+                height: 25,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("Already have a account?",style: inputText(),),
-                  Text("Sign-in",
-                  style: TextStyle(
+                  Text(
+                    "Already have a account?",
+                    style: inputText(),
+                  ),
+                  Text(
+                    "Sign-in",
+                    style: TextStyle(
                       color: Colors.black,
                       fontSize: 20,
                       decoration: TextDecoration.underline,
-                    ),)
+                    ),
+                  )
                 ],
               )
             ],
           ),
+        ),
       ),
-      ) ,
     );
   }
 }
