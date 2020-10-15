@@ -3,13 +3,9 @@ import 'package:flutter/material.dart';
 Widget appBarMain(BuildContext context) {
   return AppBar(
     backgroundColor: Colors.white,
-    title: Image.asset(
-      "assets/images/logo2.png",
-      height: 70,
-    ),
     elevation: 0.0,
     centerTitle: true,
-    toolbarHeight: 150,
+    toolbarHeight: 80,
   );
 }
 

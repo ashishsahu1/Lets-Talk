@@ -1,5 +1,6 @@
 import 'package:lets_talk/views/signin.dart';
 import 'package:flutter/material.dart';
+import 'package:lets_talk/views/signup.dart';
 
 
 void main() {
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignIn()
+      home: SignUp()
     );
   }
 }
