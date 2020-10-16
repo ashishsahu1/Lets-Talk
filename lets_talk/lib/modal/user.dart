@@ -1,5 +1,5 @@
-class User {
+class Userid {
   String userid;
 
-  User({this.userid});
+  Userid({this.userid});
 }
