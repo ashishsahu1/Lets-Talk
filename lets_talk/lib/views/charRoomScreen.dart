@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lets_talk/services/auth.dart';
+import 'package:lets_talk/views/signup.dart';
+import 'package:lets_talk/views/signin.dart';
 
 class ChatRoom extends StatefulWidget {
   AuthMethods authMethods = new AuthMethods();
@@ -18,7 +20,11 @@ class _ChatRoomState extends State<ChatRoom> {
         backgroundColor: Colors.white,
         actions: [
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              authMethods.signOut();
+              Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => SignIn()));
+            },
             child: Container(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Icon(
