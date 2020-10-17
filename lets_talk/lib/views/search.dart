@@ -24,6 +24,11 @@ class _SearchScreenState extends State<SearchScreen> {
     });
   }
 
+  //chaTROOM ,
+
+  createChatRoomAndStartConversation()
+
+
   Widget searchList() {
     return searchSnapshot != null
         ? ListView.builder(
@@ -119,17 +124,22 @@ class searchTile extends StatelessWidget {
             ],
           ),
           Spacer(),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(30),
-              gradient: LinearGradient(colors: [
-                const Color(0xff6A87FD),
-                const Color(0xff3E5EDE),
-              ]),
+          GestureDetector(
+            onTap: (){
+
+            },
+              child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(30),
+                gradient: LinearGradient(colors: [
+                  const Color(0xff6A87FD),
+                  const Color(0xff3E5EDE),
+                ]),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
+              child: Text("Message",
+              style: TextStyle(color: Colors.white),),
             ),
-            padding: EdgeInsets.symmetric(horizontal: 15, vertical: 12),
-            child: Text("Message",
-            style: TextStyle(color: Colors.white),),
           ),
         ],
       ),
