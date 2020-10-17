@@ -27,15 +27,17 @@ class _ChatRoomState extends State<ChatRoom> {
                   MaterialPageRoute(builder: (context) => Authenticate()));
             },
             child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: 10),
                 child: Icon(
-                  Icons.exit_to_app,
-                  color: Colors.black,
+                  Icons.chevron_left_rounded,
+                  color: Color(0xff6A87FD),
+                  size: 40,
                 )),
           ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color(0xff6A87FD),
         child: Icon(Icons.search),
         onPressed: () {
           Navigator.push(

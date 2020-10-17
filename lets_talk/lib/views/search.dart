@@ -6,6 +6,9 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  TextEditingController searchTextEditingController =
+      new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,29 +23,31 @@ class _SearchScreenState extends State<SearchScreen> {
           children: [
             Container(
               color: Colors.white38,
-              padding: EdgeInsets.symmetric(horizontal: 24,vertical: 16),
-                child: Row(
+              padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+              child: Row(
                 children: [
                   Expanded(
-                    child: TextField(
-                      
-                      decoration: InputDecoration(
-                        hintText: "Search username...",
-                        border: InputBorder.none,                       
-                      ),
-                    )
+                      child: TextField(
+                        controller: searchTextEditingController,
+                    decoration: InputDecoration(
+                      hintText: "Search username...",
+                      border: InputBorder.none,
                     ),
+                  )),
                   Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        colors:
-                        const Color(value,)
-                      )
-                    ),
-                    padding: EdgeInsets.all(10),
-                    child: Icon(Icons.search_rounded))
+                      height: 40,
+                      width: 40,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(40),
+                          gradient: LinearGradient(colors: [
+                            const Color(0xff6A87FD),
+                            const Color(0xff3E5EDE),
+                          ])),
+                      padding: EdgeInsets.all(10),
+                      child: Icon(
+                        Icons.search_rounded,
+                        color: Colors.white,
+                      ))
                 ],
               ),
             )
