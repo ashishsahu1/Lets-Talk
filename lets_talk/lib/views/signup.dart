@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lets_talk/services/auth.dart';
+import 'package:lets_talk/views/charRoomScreen.dart';
 import 'package:lets_talk/widgets/widget.dart';
 
 class SignUp extends StatefulWidget {
@@ -32,6 +33,10 @@ class _SignUpState extends State<SignUp> {
               passwordTextEditingController.text)
           .then((val) {
         print("$val");
+
+        Navigator.pushReplacement(context, MaterialPageRoute(
+          builder: (context) => ChatRoom()
+          ));
       });
     }
   }
