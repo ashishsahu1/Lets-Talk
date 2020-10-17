@@ -4,6 +4,8 @@ import 'package:lets_talk/views/charRoomScreen.dart';
 import 'package:lets_talk/widgets/widget.dart';
 
 class SignUp extends StatefulWidget {
+  final Function toggle;
+  SignUp(this.toggle);
   @override
   _SignUpState createState() => _SignUpState();
 }
@@ -34,9 +36,8 @@ class _SignUpState extends State<SignUp> {
           .then((val) {
         print("$val");
 
-        Navigator.pushReplacement(context, MaterialPageRoute(
-          builder: (context) => ChatRoom()
-          ));
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => ChatRoom()));
       });
     }
   }
@@ -180,12 +181,20 @@ class _SignUpState extends State<SignUp> {
                           "Already have a account? ",
                           style: inputText(),
                         ),
-                        Text(
-                          "Sign-in",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 20,
-                            decoration: TextDecoration.underline,
+                        GestureDetector(
+                          onTap: () {
+                            widget.toggle();
+                          },
+                          child: Container(
+                            padding: EdgeInsets.symmetric(vertical: 8),
+                            child: Text(
+                              "Sign-in",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 20,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
                           ),
                         )
                       ],
