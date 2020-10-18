@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:lets_talk/helper/constant.dart';
 import 'package:lets_talk/services/database.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -24,9 +25,13 @@ class _SearchScreenState extends State<SearchScreen> {
     });
   }
 
-  //chaTROOM ,
+  //chaTROOM and also send user conversation screen, pushrplacement
 
-  createChatRoomAndStartConversation()
+  createChatRoomAndStartConversation(String username){
+
+    List<String> users = [username, constants.name]
+    databaseMethods.createChatRoom()
+  }
 
 
   Widget searchList() {

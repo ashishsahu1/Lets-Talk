@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lets_talk/helper/helperFunction.dart';
 import 'package:lets_talk/services/auth.dart';
 import 'package:lets_talk/services/database.dart';
 import 'package:lets_talk/views/charRoomScreen.dart';
@@ -15,6 +16,7 @@ bool isloading = false;
 
 AuthMethods authMethods = new AuthMethods();
 DatabaseMethods databaseMethods = new DatabaseMethods();
+//helperFunction helperFunctions = new helperFunction();
 
 final formkey = GlobalKey<FormState>();
 
@@ -28,11 +30,15 @@ class _SignUpState extends State<SignUp> {
 
   signMeUp() {
     if (formkey.currentState.validate()) {
+      Map<String, String> userInfoMap = {
+        "name": userNameTextEditingController.text,
+        "email": emailTextEditingController.text
+      };
 
-       Map<String,String> userInfoMap = {
-          "name" : userNameTextEditingController.text,
-          "email" : emailTextEditingController.text 
-        };
+      helperFunction
+          .saveUserNameInSharedPrefference(userNameTextEditingController.text);
+      helperFunction
+          .saveuserEmailIdSharedPrefference(emailTextEditingController.text);
 
       setState(() {
         isloading = true;
@@ -44,7 +50,7 @@ class _SignUpState extends State<SignUp> {
           .then((val) {
         //print("$val")
         databaseMethods.uploadUsrInfo(userInfoMap);
-
+        helperFunction.saveuserLoggedInSharedPrefference(true);
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => ChatRoom()));
       });

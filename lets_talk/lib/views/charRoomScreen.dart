@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lets_talk/helper/authenticate.dart';
+import 'package:lets_talk/helper/constant.dart';
+import 'package:lets_talk/helper/helperFunction.dart';
 import 'package:lets_talk/services/auth.dart';
 import 'package:lets_talk/views/search.dart';
 
@@ -10,13 +12,23 @@ class ChatRoom extends StatefulWidget {
 
 class _ChatRoomState extends State<ChatRoom> {
   AuthMethods authMethods = new AuthMethods();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  getuserinfo() async {
+    constants.name = await helperFunction.getUserNameInSharedPrefference();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Image.asset("assets/images/logo2.png",
-            height: 50),
+        title: Image.asset("assets/images/logo2.png", height: 50),
         backgroundColor: Colors.white,
         toolbarHeight: 70,
         actions: [
