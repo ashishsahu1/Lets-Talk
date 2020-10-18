@@ -30,7 +30,9 @@ class _SearchScreenState extends State<SearchScreen> {
   createChatRoomAndStartConversation(String username){
 
     List<String> users = [username, constants.name]
-    databaseMethods.createChatRoom()
+    Map<String, dynamic
+
+    databaseMethods.createChatRoom();
   }
 
 
