@@ -1,3 +1,3 @@
 class constants{
-  static String name 
+  static String myName 
 }
