@@ -16,7 +16,7 @@ class _SearchScreenState extends State<SearchScreen> {
       new TextEditingController();
 
   QuerySnapshot searchSnapshot;
-    Widget searchList() {
+  Widget searchList() {
     return searchSnapshot != null
         ? ListView.builder(
             shrinkWrap: true,
@@ -40,12 +40,10 @@ class _SearchScreenState extends State<SearchScreen> {
     });
   }
 
-  
-  createChatRoomAndStartConversation({ String userName}) {
+  createChatRoomAndStartConversation({String userName}) {
     List<String> users = [userName, constants.myName];
     String chatRoomId = getChatRoomId(userName, constants.myName);
 
-    
     // ignore: non_constant_identifier_names
     Map<String, dynamic> ChatRoomMap = {
       "users": users,
@@ -57,7 +55,7 @@ class _SearchScreenState extends State<SearchScreen> {
         context, MaterialPageRoute(builder: (context) => ConversationScreen()));
   }
 
-  Widget searchTile({String userName ,String userEmail}){
+  Widget searchTile({String userName, String userEmail}) {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       child: Row(
@@ -75,9 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
           Spacer(),
           GestureDetector(
             onTap: () {
-              createChatRoomAndStartConversation(
-                userName: userName
-              );
+              createChatRoomAndStartConversation(userName: userName);
             },
             child: Container(
               decoration: BoxDecoration(
@@ -99,9 +95,7 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 
-
   //chaTROOM and also send user conversation screen, pushrplacement
-
 
   @override
   Widget build(BuildContext context) {
@@ -157,12 +151,6 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
-
-
-
-
-
-
 
 getChatRoomId(String a, String b) {
   if (a.substring(0, 1).codeUnitAt(0) > b.substring(0, 1).codeUnitAt(0)) {
