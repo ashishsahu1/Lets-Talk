@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:lets_talk/views/charRoomScreen.dart';
 
 class DatabaseMethods {
   getUserByUsername(String username) async {
@@ -21,7 +22,16 @@ class DatabaseMethods {
     FirebaseFirestore.instance.collection("users").add(userMap);
   }
 
-  createChatRoom(String chatroomid, chatRoomMap) {
-    FirebaseFirestore.instance.collection("ChatRoom").doc(chatroomid).set(data);
+  // createChatRoom(String chatroomid, chatRoomMap) {
+  //   FirebaseFirestore.instance.collection("ChatRoom").doc(chatroomid).set(ChatRoom);
+  // }
+    Future<bool> createChatRoom(chatRoom, chatRoomId) {
+    FirebaseFirestore.instance
+        .collection("chatRoom")
+        .doc(chatRoomId)
+        .set(chatRoom)
+        .catchError((e) {
+      print(e);
+    });
   }
 }

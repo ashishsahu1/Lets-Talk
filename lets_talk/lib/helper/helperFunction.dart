@@ -1,5 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+// ignore: camel_case_types
 class helperFunction {
   static String sharedPrefferenceUserLoggedInKey = "ISLOGGEDIN";
   static String sharedPrefferenceUserNameKey = "USERNAMEKEY";
@@ -34,13 +35,13 @@ class helperFunction {
     return await prefs.getBool(sharedPrefferenceUserLoggedInKey);
   }
 
-  static Future<String> getUserNameInSharedPrefference(String username) async {
+  static Future<String> getUserNameInSharedPrefference() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     return await prefs.getString(sharedPrefferenceUserNameKey);
   }
 
-  static Future<String> getuserEmailIdSharedPrefference(String email) async {
+  static Future<String> getuserEmailIdSharedPrefference() async {
    SharedPreferences prefs = await SharedPreferences.getInstance();
 
    return await prefs.getString(sharedPrefferenceUserEmailKey);

@@ -1,3 +1,3 @@
-class constants{
-  static String myName 
+class constants {
+  static String myName;
 }

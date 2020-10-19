@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:lets_talk/helper/constant.dart';
 import 'package:lets_talk/services/database.dart';
+import 'package:lets_talk/views/conversationscreen.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -27,15 +29,22 @@ class _SearchScreenState extends State<SearchScreen> {
 
   //chaTROOM and also send user conversation screen, pushrplacement
 
-  createChatRoomAndStartConversation(String username){
 
-    List<String> users = [username, constants.myName]
+
+  createChatRoomAndStartConversation(String userName){
+
+    String chatRoomId = getChatRoomId(userName , constants.myName);
+
+    List<String> users = [userName, constants.myName];
     Map<String, dynamic>ChatRoomMap = {
       "users": users,
-      ""
-    }
+      "chatroomid" :chatRoomId
+    };
 
-    databaseMethods.createChatRoom();
+    databaseMethods.createChatRoom(chatRoomId,ChatRoomMap);
+    Navigator.push(context, MaterialPageRoute(
+      builder:(context)=> ConversationScreen()
+      ));
   }
 
 
