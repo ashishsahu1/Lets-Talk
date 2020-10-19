@@ -25,7 +25,7 @@ class DatabaseMethods {
   // createChatRoom(String chatroomid, chatRoomMap) {
   //   FirebaseFirestore.instance.collection("ChatRoom").doc(chatroomid).set(ChatRoom);
   // }
-    Future<bool> createChatRoom(chatRoom, chatRoomId) {
+    createChatRoom(chatRoom, chatRoomId) {
     FirebaseFirestore.instance
         .collection("chatRoom")
         .doc(chatRoomId)
