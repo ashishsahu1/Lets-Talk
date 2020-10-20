@@ -27,7 +27,7 @@ class DatabaseMethods {
   // }
     createChatRoom(chatRoom, chatRoomId) {
     FirebaseFirestore.instance
-        .collection("chatRoom")
+        .collection("ChatRoom")
         .doc(chatRoomId)
         .set(chatRoom)
         .catchError((e) {
