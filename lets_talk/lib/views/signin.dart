@@ -26,14 +26,12 @@ class _SignInState extends State<SignIn> {
 
   bool isloading = false;
   QuerySnapshot snapshotUserInfo;
+  
   signIn() {
     if (formkey.currentState.validate()) {
       helperFunction
           .saveuserEmailIdSharedPrefference(emailTextEditingController.text);
-      setState(() {
-        isloading = true;
-      });
-
+      
       databaseMethods
           .getUserByUserEmail(emailTextEditingController.text)
           .then((val) {
@@ -41,6 +39,12 @@ class _SignInState extends State<SignIn> {
         helperFunction.saveUserNameInSharedPrefference(
             snapshotUserInfo.docs[0].data()["name"]);
       });
+
+      setState(() {
+        isloading = true;
+      });
+
+      
 
       authMethods
           .signInWithEmailAndPassword(emailTextEditingController.text,

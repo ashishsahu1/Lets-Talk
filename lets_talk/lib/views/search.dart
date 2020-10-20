@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:lets_talk/helper/constant.dart';
+import 'package:lets_talk/helper/helperFunction.dart';
 import 'package:lets_talk/services/database.dart';
 import 'package:lets_talk/views/conversationscreen.dart';
 
@@ -16,6 +17,7 @@ class _SearchScreenState extends State<SearchScreen> {
       new TextEditingController();
 
   QuerySnapshot searchSnapshot;
+
   Widget searchList() {
     return searchSnapshot != null
         ? ListView.builder(
@@ -96,6 +98,10 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   //chaTROOM and also send user conversation screen, pushrplacement
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -153,6 +159,9 @@ class _SearchScreenState extends State<SearchScreen> {
 }
 
 getChatRoomId(String a, String b) {
+  print(a);
+  print("random things");
+  print(b);
   if (a.substring(0, 1).codeUnitAt(0) > b.substring(0, 1).codeUnitAt(0)) {
     return "$b\_$a";
   } else {

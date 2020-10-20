@@ -21,6 +21,8 @@ class _ChatRoomState extends State<ChatRoom> {
 
   getuserinfo() async {
     constants.myName = await helperFunction.getUserNameInSharedPrefference();
+    setState(() {
+    });
   }
 
   @override

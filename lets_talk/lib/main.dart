@@ -16,11 +16,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  bool userIsLoggedIn;
+  bool userIsLoggedIn = false;
 
   @override
   void initState() {
-    // TODO: implement initState
+    getLoggedInState();
     super.initState();
   }
 
@@ -40,19 +40,6 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: userIsLoggedIn!=null ? userIsLoggedIn ? ChatRoom() : Authenticate(): blank() );
-  }
-}
-
-class blank extends StatefulWidget {
-  @override
-  _blankState createState() => _blankState();
-}
-
-class _blankState extends State<blank> {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-    );
+        home: userIsLoggedIn ? ChatRoom() : Authenticate());
   }
 }
