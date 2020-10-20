@@ -45,6 +45,8 @@ class _SearchScreenState extends State<SearchScreen> {
   createChatRoomAndStartConversation({String userName}) {
     List<String> users = [userName, constants.myName];
     String chatRoomId = getChatRoomId(userName, constants.myName);
+    print(chatRoomId);
+    print("again random chatroomid");
 
     // ignore: non_constant_identifier_names
     Map<String, dynamic> ChatRoomMap = {
