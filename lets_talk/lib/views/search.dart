@@ -6,6 +6,10 @@ import 'package:lets_talk/helper/helperFunction.dart';
 import 'package:lets_talk/services/database.dart';
 import 'package:lets_talk/views/conversationscreen.dart';
 
+class Talk {
+  static String Talkto_name;
+}
+
 class SearchScreen extends StatefulWidget {
   @override
   _SearchScreenState createState() => _SearchScreenState();
@@ -45,8 +49,6 @@ class _SearchScreenState extends State<SearchScreen> {
   createChatRoomAndStartConversation({String userName}) {
     List<String> users = [userName, constants.myName];
     String chatRoomId = getChatRoomId(userName, constants.myName);
-    print(chatRoomId);
-    print("again random chatroomid");
 
     // ignore: non_constant_identifier_names
     Map<String, dynamic> ChatRoomMap = {
@@ -78,6 +80,8 @@ class _SearchScreenState extends State<SearchScreen> {
           GestureDetector(
             onTap: () {
               createChatRoomAndStartConversation(userName: userName);
+              Talk.Talkto_name = userName;
+              print(Talk.Talkto_name.runtimeType);
             },
             child: Container(
               decoration: BoxDecoration(
@@ -161,9 +165,6 @@ class _SearchScreenState extends State<SearchScreen> {
 }
 
 getChatRoomId(String a, String b) {
-  print(a);
-  print("random things");
-  print(b);
   if (a.substring(0, 1).codeUnitAt(0) > b.substring(0, 1).codeUnitAt(0)) {
     return "$b\_$a";
   } else {
