@@ -26,7 +26,10 @@ class _ConversationScreenState extends State<ConversationScreen> {
         return ListView.builder(
             itemCount: snapshot.data.docs.length,
             itemBuilder: (context, index) {
-              return MessageTile(snapshot.data.docs[index].data()["message"]);
+              return MessageTile(
+                  snapshot.data.docs[index].data()["message"],
+                  snapshot.data.docs[index].data()["sendBy"] ==
+                      constants.myName);
             });
       },
     );
@@ -122,12 +125,39 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
 class MessageTile extends StatelessWidget {
   final String message;
-  MessageTile(this.message);
+  final bool isSendByMe;
+  MessageTile(this.message, this.isSendByMe);
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Text(
-        message,
+      width: MediaQuery.of(context).size.width,
+      alignment: isSendByMe ? Alignment.centerRight : Alignment.centerLeft,
+      child: Container(
+        margin: EdgeInsets.symmetric(vertical: 8, horizontal: 18),
+        padding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+            const Color(0xff6A87FD),
+            const Color(0xff3E5EDE),
+          ]),
+          borderRadius: isSendByMe
+              ? BorderRadius.only(
+                  topLeft: Radius.circular(23),
+                  topRight: Radius.circular(23),
+                  bottomLeft: Radius.circular(23))
+              : BorderRadius.only(
+                  topLeft: Radius.circular(23),
+                  topRight: Radius.circular(23),
+                  bottomRight: Radius.circular(23),
+                ),
+        ),
+        child: Text(
+          message,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+          ),
+        ),
       ),
     );
   }
