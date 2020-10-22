@@ -19,16 +19,21 @@ class _ChatRoomState extends State<ChatRoom> {
 
   Widget chatRoomList() {
     return StreamBuilder(
-      stream: chatRoomStream,
-      builder: (context, snapshot) {
-      return snapshot.hasData
-          ? ListView.builder(
-              itemCount: snapshot.data.docs.length,
-              itemBuilder: (context, index) {
-                return ChatRooms(snapshot.data.docs[index].data["chatRoomId"]);
-              })
-          : Container();
-    });
+        stream: chatRoomStream,
+        builder: (context, snapshot) {
+          return snapshot.hasData
+              ? ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: snapshot.data.docs.length,
+                  itemBuilder: (context, index) {
+                    return ChatRooms(snapshot.data.docs[index]
+                        .data()["chatroomid"]
+                        .toString()
+                        .replaceAll("_", "")
+                        .replaceAll(constants.myName, ""));
+                  })
+              : Container();
+        });
   }
 
   @override
@@ -95,13 +100,19 @@ class ChatRooms extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: EdgeInsets.symmetric(vertical: 18, horizontal: 8),
       child: Row(
         children: [
           Container(
+            
             decoration: BoxDecoration(
               color: Colors.blue,
+              
             ),
-            child: Text("${userName.substring(0, 1)}"),
+            child: Text(userName.substring(0, 1),
+            style: TextStyle(
+              
+            ),),
           ),
           SizedBox(
             width: 8,
