@@ -21,6 +21,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
   Widget ChatMessageList() {
     return StreamBuilder(
+      stream: chatMessageStream,
       builder: (context, snapshot) {
         return ListView.builder(
             itemCount: snapshot.data.docs.length,
