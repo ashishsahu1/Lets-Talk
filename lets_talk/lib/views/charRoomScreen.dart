@@ -18,7 +18,9 @@ class _ChatRoomState extends State<ChatRoom> {
   Stream chatRoomStream;
 
   Widget chatRoomList() {
-    return StreamBuilder(builder: (context, snapshot) {
+    return StreamBuilder(
+      stream: chatRoomStream,
+      builder: (context, snapshot) {
       return snapshot.hasData
           ? ListView.builder(
               itemCount: snapshot.data.docs.length,
@@ -42,6 +44,8 @@ class _ChatRoomState extends State<ChatRoom> {
     databaseMethods.getChatRooms(constants.myName).then((val) {
       setState(() {
         chatRoomStream = val;
+        print(
+            "we got the data + ${chatRoomStream.toString()} this is name  ${constants.myName}");
       });
     });
   }
