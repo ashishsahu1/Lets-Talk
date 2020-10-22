@@ -36,6 +36,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   firebase_core : ^0.5.0
+  flutter_launcher_icons: "^0.7.0"
+
+flutter_icons:
+  ios: true
+  android: true
+  image_path_ios: "assets/launcher/icon.png"
+  image_path_android: "assets/launcher/icon.png"
   # cloud_firestore: ^0.14.0 other firebase dependencies
 
 # For information on the generic Dart part of this file, see the
