@@ -23,21 +23,20 @@ class _ChatRoomState extends State<ChatRoom> {
         stream: chatRoomStream,
         //initilData: [],
         builder: (context, snapshot) {
-          return snapshot == null
-              ? Container()
-              : ListView.builder(
+          return snapshot.hasData
+              ? ListView.builder(
                   shrinkWrap: true,
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, index) {
-                    return ChatRooms(snapshot.data.docs[index]
-                        .data()["chatroomid"]
-                        .toString()
-                        .replaceAll("_", "")
-                        .replaceAll(constants.myName, ""),
+                    return ChatRooms(
                         snapshot.data.docs[index]
-                        .data()["chatroomid"]
-                        );
-                  });
+                            .data()["chatroomid"]
+                            .toString()
+                            .replaceAll("_", "")
+                            .replaceAll(constants.myName, ""),
+                        snapshot.data.docs[index].data()["chatroomid"]);
+                  })
+              : Container();
         });
   }
 
@@ -107,10 +106,10 @@ class ChatRooms extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => ConversationScreen(chatRoomId)
-          
-          ));
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => ConversationScreen(chatRoomId)));
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 18, horizontal: 8),
