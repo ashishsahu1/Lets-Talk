@@ -63,7 +63,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          'Say Hi to, $name',
+          'Say Hi ',
           style: TextStyle(
             color: Color(0xff3E5EDE),
             fontSize: 30,
@@ -90,7 +90,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
                     ),
                     //controller: searchTextEditingController,
                     decoration: InputDecoration(
-                      hintText: "Say hi, $name",
+                      hintText: "write something",
                       border: InputBorder.none,
                     ),
                   )),

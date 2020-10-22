@@ -4,6 +4,7 @@ import 'package:lets_talk/helper/constant.dart';
 import 'package:lets_talk/helper/helperFunction.dart';
 import 'package:lets_talk/services/auth.dart';
 import 'package:lets_talk/services/database.dart';
+import 'package:lets_talk/views/conversationscreen.dart';
 import 'package:lets_talk/views/search.dart';
 
 class ChatRoom extends StatefulWidget {
@@ -20,9 +21,11 @@ class _ChatRoomState extends State<ChatRoom> {
   Widget chatRoomList() {
     return StreamBuilder(
         stream: chatRoomStream,
+        //initilData: [],
         builder: (context, snapshot) {
-          return snapshot.hasData
-              ? ListView.builder(
+          return snapshot == null
+              ? Container()
+              : ListView.builder(
                   shrinkWrap: true,
                   itemCount: snapshot.data.docs.length,
                   itemBuilder: (context, index) {
@@ -30,9 +33,11 @@ class _ChatRoomState extends State<ChatRoom> {
                         .data()["chatroomid"]
                         .toString()
                         .replaceAll("_", "")
-                        .replaceAll(constants.myName, ""));
-                  })
-              : Container();
+                        .replaceAll(constants.myName, ""),
+                        snapshot.data.docs[index]
+                        .data()["chatroomid"]
+                        );
+                  });
         });
   }
 
@@ -95,30 +100,46 @@ class _ChatRoomState extends State<ChatRoom> {
 
 class ChatRooms extends StatelessWidget {
   final String userName;
-  ChatRooms(this.userName);
+  final String chatRoomId;
+  ChatRooms(this.userName, this.chatRoomId);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 18, horizontal: 8),
-      child: Row(
-        children: [
-          Container(
-            
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) => ConversationScreen(chatRoomId)
+          
+          ));
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 18, horizontal: 8),
+        child: Row(
+          children: [
+            SizedBox(
+              width: 10,
             ),
-            child: Text(userName.substring(0, 1),
-            style: TextStyle(
-              
-            ),),
-          ),
-          SizedBox(
-            width: 8,
-          ),
-          Text(userName),
-        ],
+            Container(
+              decoration: BoxDecoration(
+                  //color: Colors.blue,
+
+                  ),
+              child: Image.asset(
+                "assets/images/logo4.png",
+                height: 50,
+              ),
+            ),
+            SizedBox(
+              width: 20,
+            ),
+            Text(
+              userName,
+              style: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
