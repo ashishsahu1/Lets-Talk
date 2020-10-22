@@ -19,22 +19,20 @@ class _ChatRoomState extends State<ChatRoom> {
 
   Widget chatRoomList() {
     return StreamBuilder(builder: (context, snapshot) {
-      return ListView.builder(
-          itemCount: snapshot.data.docs.length,
-          itemBuilder: (context, index) {
-            return ChatRooms(snapshot.data.docs[index].data["chatRoomId"]);
-          });
+      return snapshot.hasData
+          ? ListView.builder(
+              itemCount: snapshot.data.docs.length,
+              itemBuilder: (context, index) {
+                return ChatRooms(snapshot.data.docs[index].data["chatRoomId"]);
+              })
+          : Container();
     });
   }
 
   @override
   void initState() {
     getuserinfo();
-    databaseMethods.getChatRooms(constants.myName).then((val) {
-      setState(() {
-        chatRoomStream = val;
-      });
-    });
+
     super.initState();
   }
 
@@ -42,7 +40,11 @@ class _ChatRoomState extends State<ChatRoom> {
     constants.myName = await helperFunction.getUserNameInSharedPrefference();
     print(constants.myName);
     print("myname");
-    setState(() {});
+    databaseMethods.getChatRooms(constants.myName).then((val) {
+      setState(() {
+        chatRoomStream = val;
+      });
+    });
   }
 
   @override
@@ -70,6 +72,7 @@ class _ChatRoomState extends State<ChatRoom> {
           ),
         ],
       ),
+      body: chatRoomList(),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Color(0xff6A87FD),
         child: Icon(Icons.search),
