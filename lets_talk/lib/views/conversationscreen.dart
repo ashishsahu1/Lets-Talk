@@ -17,7 +17,19 @@ class _ConversationScreenState extends State<ConversationScreen> {
 
   DatabaseMethods databaseMethods = new DatabaseMethods();
   TextEditingController messageController = new TextEditingController();
-  Widget ChatMessageList() {}
+  Stream chatMessageStream;
+
+  Widget ChatMessageList() {
+    return StreamBuilder(
+      builder: (context, snapshot) {
+        return ListView.builder(
+            itemCount: snapshot.data.docs.length,
+            itemBuilder: (context, index) {
+              return MessageTile(snapshot.data.docs[index].data()["message"]);
+            });
+      },
+    );
+  }
 
   sendMessage() {
     if (messageController.text.isNotEmpty) {
@@ -26,8 +38,19 @@ class _ConversationScreenState extends State<ConversationScreen> {
         "sendBy": constants.myName,
       };
       print("done till here");
-      databaseMethods.getConversationMessages(widget.chatRoomId, MessageMap);
+      databaseMethods.addConversationMessages(widget.chatRoomId, MessageMap);
+      messageController.text = "";
     }
+  }
+
+  @override
+  void initState() {
+    databaseMethods.getConversationMessages(widget.chatRoomId).then((val) {
+      setState(() {
+        chatMessageStream = val;
+      });
+    });
+    super.initState();
   }
 
   @override
@@ -47,6 +70,7 @@ class _ConversationScreenState extends State<ConversationScreen> {
       ),
       body: Stack(
         children: [
+          ChatMessageList(),
           Container(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -90,6 +114,19 @@ class _ConversationScreenState extends State<ConversationScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class MessageTile extends StatelessWidget {
+  final String message;
+  MessageTile(this.message);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Text(
+        message,
       ),
     );
   }

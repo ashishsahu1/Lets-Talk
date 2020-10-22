@@ -33,7 +33,7 @@ class DatabaseMethods {
     });
   }
 
-  getConversationMessages(String chatRoomId, messageMap) {
+  addConversationMessages(String chatRoomId, messageMap) {
     FirebaseFirestore.instance
         .collection("ChatRoom")
         .doc(chatRoomId)
@@ -42,5 +42,13 @@ class DatabaseMethods {
         .catchError((e) {
       print(e.toString());
     });
+  }
+
+  getConversationMessages(String chatRoomId) async {
+    return await FirebaseFirestore.instance
+        .collection("ChatRoom")
+        .doc(chatRoomId)
+        .collection("chats")
+        .snapshots();
   }
 }
