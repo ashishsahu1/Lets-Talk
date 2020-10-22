@@ -3,6 +3,7 @@ import 'package:lets_talk/helper/authenticate.dart';
 import 'package:lets_talk/helper/constant.dart';
 import 'package:lets_talk/helper/helperFunction.dart';
 import 'package:lets_talk/services/auth.dart';
+import 'package:lets_talk/services/database.dart';
 import 'package:lets_talk/views/search.dart';
 
 class ChatRoom extends StatefulWidget {
@@ -12,10 +13,28 @@ class ChatRoom extends StatefulWidget {
 
 class _ChatRoomState extends State<ChatRoom> {
   AuthMethods authMethods = new AuthMethods();
+  DatabaseMethods databaseMethods = new DatabaseMethods();
+
+  Stream chatRoomStream;
+
+  Widget chatRoomList() {
+    return StreamBuilder(builder: (context, snapshot) {
+      return ListView.builder(
+          itemCount: snapshot.data.docs.length,
+          itemBuilder: (context, index) {
+            return ChatRooms(snapshot.data.docs[index].data["chatRoomId"]);
+          });
+    });
+  }
 
   @override
   void initState() {
     getuserinfo();
+    databaseMethods.getChatRooms(constants.myName).then((val) {
+      setState(() {
+        chatRoomStream = val;
+      });
+    });
     super.initState();
   }
 
@@ -58,6 +77,31 @@ class _ChatRoomState extends State<ChatRoom> {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => SearchScreen()));
         },
+      ),
+    );
+  }
+}
+
+class ChatRooms extends StatelessWidget {
+  final String userName;
+  ChatRooms(this.userName);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.blue,
+            ),
+            child: Text("${userName.substring(0, 1)}"),
+          ),
+          SizedBox(
+            width: 8,
+          ),
+          Text(userName),
+        ],
       ),
     );
   }
