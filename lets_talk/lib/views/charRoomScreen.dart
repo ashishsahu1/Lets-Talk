@@ -32,7 +32,6 @@ class _ChatRoomState extends State<ChatRoom> {
   @override
   void initState() {
     getuserinfo();
-
     super.initState();
   }
 
