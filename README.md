@@ -1,3 +1,3 @@
 # Lets Talk
-Lets Talk is an android online chat application 
-Using Flutter we can build this application
+Lets Talk is an android online chat application <br>
+Using Flutter we can build this application easily
